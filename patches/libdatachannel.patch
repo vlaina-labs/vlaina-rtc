@@ -1,0 +1,28 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d272f0ba..261ea19c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -515,7 +515,8 @@ install(TARGETS datachannel EXPORT LibDataChannelTargets
+ 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+ 
+-if(MSVC)
++get_target_property(vlaina_datachannel_type datachannel TYPE)
++if(MSVC AND vlaina_datachannel_type STREQUAL "SHARED_LIBRARY")
+ 	install(FILES $<TARGET_PDB_FILE:datachannel>
+     DESTINATION ${CMAKE_INSTALL_BINDIR} OPTIONAL)
+ endif()
+diff --git a/src/impl/init.cpp b/src/impl/init.cpp
+index aad72dd3..e1f9077c 100644
+--- a/src/impl/init.cpp
++++ b/src/impl/init.cpp
+@@ -118,8 +118,7 @@ void Init::doInit() {
+ 		throw std::runtime_error("WSAStartup failed, error=" + std::to_string(WSAGetLastError()));
+ #endif
+ 
+-	int concurrency = std::thread::hardware_concurrency();
+-	int count = std::max(concurrency, MIN_THREADPOOL_SIZE);
++	int count = MIN_THREADPOOL_SIZE;
+ 	PLOG_DEBUG << "Spawning " << count << " threads";
+ 	ThreadPool::Instance().spawn(count);
+ 

@@ -1,0 +1,57 @@
+cmake_minimum_required(VERSION 3.24)
+
+get_filename_component(ROOT "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+
+function(project)
+endfunction()
+
+function(FetchContent_Declare name)
+  if(NOT name STREQUAL "vlaina_phone_mbedtls")
+    message(FATAL_ERROR "Unexpected external dependency: ${name}")
+  endif()
+  cmake_parse_arguments(PIN "EXCLUDE_FROM_ALL;GIT_SUBMODULES_RECURSE"
+    "GIT_REPOSITORY;GIT_TAG" "GIT_SUBMODULES" ${ARGN})
+  if(NOT PIN_GIT_TAG STREQUAL "e185d7fd85499c8ce5ca2a54f5cf8fe7dbe3f8df")
+    message(FATAL_ERROR "Mbed TLS revision changed")
+  endif()
+  set_property(GLOBAL PROPERTY RTC_DECLARED TRUE)
+endfunction()
+
+function(FetchContent_MakeAvailable name)
+  get_property(declared GLOBAL PROPERTY RTC_DECLARED)
+  if(NOT declared OR NOT name STREQUAL "vlaina_phone_mbedtls")
+    message(FATAL_ERROR "Unpinned dependency request")
+  endif()
+endfunction()
+
+function(target_compile_definitions)
+endfunction()
+
+function(add_library)
+endfunction()
+
+function(set_target_properties)
+endfunction()
+
+function(add_subdirectory source binary)
+  if(NOT source STREQUAL "${ROOT}/vendor/libdatachannel")
+    message(FATAL_ERROR "The vendored libdatachannel was not selected")
+  endif()
+  if(NOT NO_MEDIA OR NOT NO_TESTS OR NOT NO_EXAMPLES OR NO_WEBSOCKET)
+    message(FATAL_ERROR "The networking feature selection changed")
+  endif()
+  if(NOT USE_MBEDTLS OR USE_GNUTLS OR USE_NICE OR BUILD_SHARED_LIBS)
+    message(FATAL_ERROR "The networking backend or linking mode changed")
+  endif()
+  set_property(GLOBAL PROPERTY RTC_WRAPPER_CHECKED TRUE)
+endfunction()
+
+file(READ "${ROOT}/CMakeLists.txt" wrapper)
+string(REPLACE "include(FetchContent)" "" wrapper "${wrapper}")
+string(REPLACE "\${CMAKE_CURRENT_FUNCTION_LIST_DIR}" "${ROOT}" wrapper "${wrapper}")
+cmake_language(EVAL CODE "${wrapper}")
+get_property(checked GLOBAL PROPERTY RTC_WRAPPER_CHECKED)
+if(NOT checked)
+  message(FATAL_ERROR "The independent CMake integration was not exercised")
+endif()
+message(STATUS "Independent RTC CMake wiring passed with mocked dependency targets; no build or download performed")

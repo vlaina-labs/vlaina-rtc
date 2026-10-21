@@ -1,0 +1,26 @@
+This directory is the source distribution of Vlaina RTC 0.1.0.
+
+Public source repository: https://github.com/vlaina-labs/vlaina-rtc
+
+Keep this directory separate from the proprietary desktop and mobile projects.
+Publish only this directory when creating the public source repository.
+Preserve all licenses, copyright notices, pinned revisions and patched files.
+The upstream library source is included as ordinary files, not Git submodules.
+
+Build integration:
+The desktop project expects this directory next to its own source directory.
+For a different location, set the desktop CMake cache variable
+VLAINA_RTC_SOURCE_DIR to the absolute path of this directory.
+The existing LibDataChannel::LibDataChannel CMake target is retained.
+Mbed TLS is downloaded at its pinned revision when dependencies are configured.
+
+Before distributing desktop executables:
+Provide recipients with these corresponding sources under their licenses and
+tell them how to obtain them. A local unpublished folder alone does not provide
+remote recipients with source access. Publish the matching version at the
+repository above before relying on that URL for source access, or provide the
+matching sources alongside the executables. Keep older corresponding source
+versions available for older distributed executables.
+
+This directory covers the extracted networking components only. It does not
+provide the corresponding sources or notices for other desktop dependencies.

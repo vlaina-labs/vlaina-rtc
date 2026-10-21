@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "version": "0.1.0",
+  "components": [
+    {
+      "name": "libdatachannel",
+      "url": "https://github.com/paullouisageneau/libdatachannel",
+      "revision": "9e6a13abbb6846c003d817d0387b6706466e2b03",
+      "license": "MPL-2.0",
+      "path": "vendor/libdatachannel",
+      "files": 145,
+      "bytes": 833273
+    },
+    {
+      "name": "libjuice",
+      "url": "https://github.com/paullouisageneau/libjuice",
+      "revision": "b509b6c1f90e4a1d4753e6bde62ffbeb4d10c6bb",
+      "license": "MPL-2.0",
+      "path": "vendor/libdatachannel/deps/libjuice",
+      "files": 47,
+      "bytes": 433294
+    },
+    {
+      "name": "usrsctp",
+      "url": "https://github.com/sctplab/usrsctp",
+      "revision": "fec583d54493f879d2ae44a743423bf8a04371ab",
+      "license": "BSD-3-Clause",
+      "path": "vendor/libdatachannel/deps/usrsctp",
+      "files": 71,
+      "bytes": 2947594
+    },
+    {
+      "name": "plog",
+      "url": "https://github.com/SergiusTheBest/plog",
+      "revision": "94899e0b926ac1b0f4750bfbd495167b4a6ae9ef",
+      "license": "MIT",
+      "path": "vendor/libdatachannel/deps/plog",
+      "files": 29,
+      "bytes": 92440
+    }
+  ],
+  "externalDependencies": [
+    {
+      "name": "Mbed TLS",
+      "url": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "e185d7fd85499c8ce5ca2a54f5cf8fe7dbe3f8df",
+      "licenseChoice": "Apache-2.0",
+      "vendored": false
+    }
+  ],
+  "changes": [
+    "libdatachannel/src/impl/init.cpp: retain the minimum thread pool size instead of scaling to all logical CPUs.",
+    "libdatachannel/CMakeLists.txt: install MSVC PDB files only for shared-library targets."
+  ],
+  "omissions": [
+    "Only library source, public headers, CMake files and license texts needed by the configured data-channel/WebSocket build are included.",
+    "Git metadata, GitHub workflows, Markdown documentation, examples, sample media, tests and disabled optional json/libsrtp submodules are omitted.",
+    "usrsctp LICENSE.md is retained byte-for-byte as LICENSE.txt.",
+    "Line endings of the two patched libdatachannel files are normalized to LF so the recorded upstream patch applies directly."
+  ]
+}

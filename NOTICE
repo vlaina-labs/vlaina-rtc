@@ -1,0 +1,40 @@
+Vlaina RTC 0.1.0
+
+Public source repository: https://github.com/vlaina-labs/vlaina-rtc
+
+This source distribution contains only the networking libraries and the build
+integration used by the desktop application. It contains no desktop business
+logic, facial recognition models, user data or proprietary application assets.
+
+The build integration and modifications to libdatachannel are made available
+under the Mozilla Public License, Version 2.0. See LICENSE.
+Each third-party component retains its own copyright notices and license.
+
+libdatachannel 0.23.2
+Copyright Paul-Louis Ageneau and contributors; notices preserved in source.
+https://github.com/paullouisageneau/libdatachannel
+License: MPL-2.0; see vendor/libdatachannel/LICENSE.
+
+libjuice 1.6.1
+Copyright Paul-Louis Ageneau and contributors.
+https://github.com/paullouisageneau/libjuice
+License: MPL-2.0; see vendor/libdatachannel/deps/libjuice/LICENSE.
+
+usrsctp
+Copyright Randall Stewart, Michael Tuexen and contributors.
+https://github.com/sctplab/usrsctp
+License: BSD-3-Clause; see vendor/libdatachannel/deps/usrsctp/LICENSE.txt
+and the notices in individual source files.
+
+plog 1.1.10
+Copyright (c) 2022 Sergey Podobry.
+https://github.com/SergiusTheBest/plog
+License: MIT; see vendor/libdatachannel/deps/plog/LICENSE.
+
+Mbed TLS is fetched separately at the exact revision in sources.lock.json.
+https://github.com/Mbed-TLS/mbedtls
+Its Apache-2.0 license option is selected for this integration.
+
+sources.lock.json records the upstream revisions and the two modifications.
+The modified files are included directly. patches/libdatachannel.patch records
+their changes relative to upstream; no patch step is required to use them.
