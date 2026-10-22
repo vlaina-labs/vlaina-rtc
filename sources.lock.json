@@ -37,6 +37,15 @@
       "path": "vendor/libdatachannel/deps/plog",
       "files": 29,
       "bytes": 92440
+    },
+    {
+      "name": "Eigen",
+      "url": "https://gitlab.com/libeigen/eigen",
+      "revision": "33d0937c6bdf5ec999939fb17f2a553183d14a74",
+      "license": "MPL-2.0 (MPL2-only build)",
+      "path": "vendor/eigen",
+      "files": 591,
+      "bytes": 9590844
     }
   ],
   "externalDependencies": [
@@ -56,6 +65,7 @@
     "Only library source, public headers, CMake files and license texts needed by the configured data-channel/WebSocket build are included.",
     "Git metadata, GitHub workflows, Markdown documentation, examples, sample media, tests and disabled optional json/libsrtp submodules are omitted.",
     "usrsctp LICENSE.md is retained byte-for-byte as LICENSE.txt.",
-    "Line endings of the two patched libdatachannel files are normalized to LF so the recorded upstream patch applies directly."
+    "Line endings of the two patched libdatachannel files are normalized to LF so the recorded upstream patch applies directly.",
+    "Eigen is provided as the pinned header source subset and license texts used by TensorFlow Lite; its binary composition is build-dependent."
   ]
 }

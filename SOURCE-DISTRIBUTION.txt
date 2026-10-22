@@ -5,6 +5,14 @@ Public source repository: https://github.com/vlaina-labs/vlaina-rtc
 Keep this directory separate from the proprietary desktop and mobile projects.
 Publish only this directory when creating the public source repository.
 Preserve all licenses, copyright notices, pinned revisions and patched files.
+The vendored Eigen headers are intended for TensorFlow Lite's Eigen dependency.
+The configured TensorFlow Lite build defines EIGEN_MPL2_ONLY; Eigen source files
+remain under their applicable upstream licenses. The final binary composition
+and applicable source obligations must be assessed for the exact distributed
+build. This source snapshot includes the pinned Eigen files and license texts.
+TensorFlow Lite's eigen.cmake module normally alters files in the populated
+Eigen source tree; this integration supplies an interface target instead and
+sets EIGEN_MPL2_ONLY on that target.
 The upstream library source is included as ordinary files, not Git submodules.
 
 Build integration:
@@ -22,5 +30,6 @@ repository above before relying on that URL for source access, or provide the
 matching sources alongside the executables. Keep older corresponding source
 versions available for older distributed executables.
 
-This directory covers the extracted networking components only. It does not
-provide the corresponding sources or notices for other desktop dependencies.
+This directory also contains the pinned Eigen source snapshot used by the
+desktop face-tracking dependency. It does not provide corresponding sources or
+notices for other desktop dependencies.

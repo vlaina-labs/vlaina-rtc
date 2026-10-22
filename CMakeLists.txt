@@ -1,6 +1,18 @@
 cmake_minimum_required(VERSION 3.24)
 project(vlaina_rtc VERSION 0.1.0 LANGUAGES C CXX)
 
+add_library(eigen INTERFACE)
+add_library(Eigen3::Eigen ALIAS eigen)
+target_include_directories(eigen SYSTEM INTERFACE
+  "${CMAKE_CURRENT_LIST_DIR}/vendor/eigen")
+set_property(TARGET eigen PROPERTY INTERFACE_DIRECTORIES
+  "${CMAKE_CURRENT_LIST_DIR}/vendor/eigen")
+target_compile_definitions(eigen INTERFACE EIGEN_MPL2_ONLY)
+set(eigen_POPULATED TRUE)
+if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(eigen_POPULATED TRUE PARENT_SCOPE)
+endif()
+
 include(FetchContent)
 
 function(vlaina_rtc_dependencies)

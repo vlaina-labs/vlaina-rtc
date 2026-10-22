@@ -2,9 +2,10 @@ Vlaina RTC 0.1.0
 
 Public source repository: https://github.com/vlaina-labs/vlaina-rtc
 
-This source distribution contains only the networking libraries and the build
-integration used by the desktop application. It contains no desktop business
-logic, facial recognition models, user data or proprietary application assets.
+This source distribution contains networking libraries, the Eigen headers used
+by TensorFlow Lite, and build integration used by the desktop application. It
+contains no desktop business logic, facial recognition models, user data or
+proprietary application assets.
 
 The build integration and modifications to libdatachannel are made available
 under the Mozilla Public License, Version 2.0. See LICENSE.
@@ -14,6 +15,13 @@ libdatachannel 0.23.2
 Copyright Paul-Louis Ageneau and contributors; notices preserved in source.
 https://github.com/paullouisageneau/libdatachannel
 License: MPL-2.0; see vendor/libdatachannel/LICENSE.
+
+Eigen 3.4.0-dev (TensorFlow 2.18.0 pinned revision)
+https://gitlab.com/libeigen/eigen
+Source revision: 33d0937c6bdf5ec999939fb17f2a553183d14a74
+The build defines EIGEN_MPL2_ONLY to restrict use to MPL-2.0 or more permissive
+files. See vendor/eigen/COPYING.MPL2 and file-level copyright/license notices.
+Other Eigen license texts are retained at vendor/eigen/COPYING.*.
 
 libjuice 1.6.1
 Copyright Paul-Louis Ageneau and contributors.
